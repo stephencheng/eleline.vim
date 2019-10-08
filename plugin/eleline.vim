@@ -205,6 +205,8 @@ function! s:StatusLine() abort
   let l:coc = '%{ElelineCoc()}'
   let l:vista = '%#ElelineVista#%{ElelineVista()}%*'
   let l:prefix = l:bufnr_winnr.l:paste
+
+  let l:pwd = '%{getcwd()}'
   let l:common = l:curfname.l:branch.l:status.l:error.l:warning.l:tags.l:lcn.l:coc.l:vista
   if get(g:, 'eleline_slim', 0)
     return l:prefix.'%<'.l:common
@@ -216,7 +218,10 @@ function! s:StatusLine() abort
   let l:enc = ' %{&fenc != "" ? &fenc : &enc} | %{&bomb ? ",BOM " : ""}'
   let l:ff = '%{&ff} %*'
   let l:pct = '%#Eleline9# %P %*'
-  return l:prefix.l:tot.'%<'.l:fsize.l:common
+
+  " return l:prefix.l:tot.'%<'.l:fsize.l:common
+  "       \ .'%='.l:m_r_f.l:pos.l:enc.l:ff.l:pct
+  return l:prefix.l:tot.'%<'.l:fsize.l:common.'[['.l:pwd.']]'
         \ .'%='.l:m_r_f.l:pos.l:enc.l:ff.l:pct
 endfunction
 
