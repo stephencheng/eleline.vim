@@ -206,11 +206,15 @@ function! s:StatusLine() abort
   let l:vista = '%#ElelineVista#%{ElelineVista()}%*'
   let l:prefix = l:bufnr_winnr.l:paste
 
-  let l:pwd = '%{getcwd()}'
+  let pwd = '%{getcwd()}'
+
+  let l:pwd = join(split(pwd,"/")[-3:],'/')
   let l:common = l:curfname.l:branch.l:status.l:error.l:warning.l:tags.l:lcn.l:coc.l:vista
+
   if get(g:, 'eleline_slim', 0)
     return l:prefix.'%<'.l:common
   endif
+
   let l:tot = s:def('ElelineTotalBuf')
   let l:fsize = '%#ElelineFsize#%{ElelineFsize(@%)}%*'
   let l:m_r_f = '%#Eleline7# %m%r%y %*'
@@ -223,6 +227,7 @@ function! s:StatusLine() abort
   "       \ .'%='.l:m_r_f.l:pos.l:enc.l:ff.l:pct
   return l:prefix.l:tot.'%<'.l:fsize.l:common.'[['.l:pwd.']]'
         \ .'%='.l:m_r_f.l:pos.l:enc.l:ff.l:pct
+
 endfunction
 
 let s:colors = {
