@@ -231,7 +231,7 @@ function! s:StatusLine() abort
   let l:pct = '%#Eleline9# %P %*'
 
   return l:prefix.l:tot.'%<'.l:fsize.l:common
-        \ .'%='.l:m_r_f.l:pos.l:enc.l:ff.l:pct
+        \ .'%='.'100'.l:m_r_f.'200'.l:pos.l:enc.l:ff.l:pct
   " return l:prefix.l:tot.'%<'.l:fsize.l:common.'['.l:pwd.']'
   "       \ .'%='.l:m_r_f.l:pos.l:enc.l:ff.l:pct
 
